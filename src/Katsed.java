@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
+import com.google.gson.Gson;
 
 public class Katsed {
     public static void main(String[] args) {
@@ -80,6 +81,10 @@ public class Katsed {
         vs18.tunnid.put("2019-11-18", tunnid);
 
         // kontrollime tunniplaani andmed
-        System.out.println(vs18);
+        // loome JSON andmestik loodud tüübide põhjal
+
+        Gson g = new Gson();
+        String vs18JSON = g.toJson(vs18);
+        System.out.println(vs18JSON);
     }
 } 
