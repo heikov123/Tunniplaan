@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Map;
 
 public class Katsed {
     public static void main(String[] args) {
@@ -98,10 +99,17 @@ public class Katsed {
             // siin kohal olemas vajalikud andmed
             // kasutame need tunniplaani ehitamiseks
             Gson tunniplaaniJSON = new Gson();
+            // loeme andmed meie loodud struktuuri sisse
             vs18 = tunniplaaniJSON.fromJson(result, Tunniplaan.class);
-            System.out.println(vs18.nadal);
-            System.out.println(vs18.tunnid);
-            System.out.println(result);
+             for (Map.Entry<String, List<Tund>> element: vs18.tunnid.entrySet()){
+                // näitame kuupäevad
+                System.out.println(element.getKey());
+                // näitame antud kuupäeva tunnid
+                for (Tund tund: element.getValue()) {
+                    System.out.println(tund);
+                    System.out.println("------------------");
+                }
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
