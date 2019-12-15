@@ -79,13 +79,8 @@ public class Katsed {
         
           // loome tunniplaan tundide nimekirja abil
         Tunniplaan vs18 = new Tunniplaan();
-        vs18.nadal = "2019-11-18";
-        vs18.tunnid = new HashMap<String, List<Tund>>();
-        vs18.tunnid.put("2019-11-18", tunnid);
 
-        // kontrollime tunniplaani andmed
         // loome JSON andmestik loodud tüübide põhjal
-
         Gson g = new Gson();
         String vs18JSON = g.toJson(vs18);
         System.out.println(vs18JSON);
@@ -99,6 +94,13 @@ public class Katsed {
             while (null != (str = br.readLine())) {
                 result += str;
             }
+
+            // siin kohal olemas vajalikud andmed
+            // kasutame need tunniplaani ehitamiseks
+            Gson tunniplaaniJSON = new Gson();
+            vs18 = tunniplaaniJSON.fromJson(result, Tunniplaan.class);
+            System.out.println(vs18.nadal);
+            System.out.println(vs18.tunnid);
             System.out.println(result);
         } catch (Exception ex) {
             ex.printStackTrace();
